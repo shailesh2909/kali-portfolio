@@ -52,8 +52,8 @@ An interactive Kali Linux-themed portfolio website built with Next.js and Tailwi
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/Ali-Abo-Alshamlat/ali-abo-alshamlat.github.io.git
-cd shailesh-suryawanshi-portfolio
+git clone https://github.com/shailesh2909/kali-portfolio
+cd kali-portfolio
 ```
 
 ### Install Dependencies
@@ -62,37 +62,6 @@ npm install
 # or
 yarn install
 ```
-
-## ⚙️ Configuration
-
-### Environment Variables
-
-Create a `.env.local` file in the root directory:
-
-```env
-NEXT_PUBLIC_USER_ID=YOUR_EMAILJS_USER_ID
-NEXT_PUBLIC_TEMPLATE_ID=YOUR_EMAILJS_TEMPLATE_ID
-NEXT_PUBLIC_SERVICE_ID=YOUR_EMAILJS_SERVICE_ID
-NEXT_PUBLIC_TRACKING_ID=YOUR_GOOGLE_ANALYTICS_ID
-```
-
-### Setting up EmailJS for Contact Form
-
-1. Create an account at [EmailJS](https://www.emailjs.com/)
-2. Set up a new email service (Gmail or Outlook recommended)
-3. Create an email template with the following variables:
-   - `from_name`
-   - `from_email`
-   - `message`
-4. Copy your User ID, Template ID, and Service ID to the `.env.local` file
-
-### Setting up Google Analytics
-
-1. Create a Google Analytics account
-2. Get your Tracking ID
-3. Add it to the `.env.local` file as `NEXT_PUBLIC_TRACKING_ID`
-
-## 🛠️ Development
 
 ### Run Development Server
 ```bash
@@ -195,21 +164,15 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📧 Contact
 
-Shailesh Suryawanshi - [@your-twitter](https://twitter.com/your-twitter)
+Shailesh Suryawanshi - [shaileshsuryawanshi443103@gmail.com](mailto:shaileshsuryawanshi443103@gmail.com) | [LinkedIn](https://www.linkedin.com/in/shailesh-suryawanshi-6989492a1/)
 
-Project Link: [https://ali-abo-alshamlat.github.io/](https://ali-abo-alshamlat.github.io/)
+Project Link: [https://github.com/shailesh2909/kali-portfolio](https://github.com/shailesh2909/kali-portfolio)
 
 ## 🙏 Acknowledgments
 
 - Inspired by the Kali Linux desktop environment
 - Icons from Flat-Remix-Blue-Dark theme
 - Built with passion for creating unique web experiences
-
-## 📸 Screenshots
-
-![Desktop View](https://user-images.githubusercontent.com/60721049/193449920-1c2a99b4-072d-40d2-96d8-2add306a87df.png)
-
-![Applications View](https://user-images.githubusercontent.com/60721049/193449933-853aa355-d440-4bd7-8b6a-d93a36076969.png)
 
 ---
 
