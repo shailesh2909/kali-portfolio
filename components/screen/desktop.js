@@ -6,7 +6,7 @@ import Window from '../base/window';
 import KaliApp from '../base/kali_app';
 import AllApplications from '../screen/all-applications'
 import DesktopMenu from '../context menus/desktop-menu';
-import DefaultMenu from '../context menus/default';
+import FolderMenu from '../context menus/folder-menu';
 import $ from 'jquery';
 import ReactGA from 'react-ga';
 
@@ -28,9 +28,10 @@ export class Desktop extends Component {
             desktop_apps: [],
             context_menus: {
                 desktop: false,
-                default: false,
+                folder: false,
             },
             showNameBar: false,
+            selectedFolderId: null,
         }
     }
 
@@ -78,7 +79,6 @@ export class Desktop extends Component {
 
     setContextListeners = () => {
         document.addEventListener('contextmenu', this.checkContextMenu);
-        // on click, anywhere, hide all menus
         document.addEventListener('click', this.hideAllContextMenu);
     }
 
@@ -90,24 +90,16 @@ export class Desktop extends Component {
     checkContextMenu = (e) => {
         e.preventDefault();
         this.hideAllContextMenu();
-        switch (e.target.dataset.context) {
-            case "desktop-area":
-                ReactGA.event({
-                    category: `Context Menu`,
-                    action: `Opened Desktop Context Menu`
-                });
-                this.showContextMenu(e, "desktop");
-                break;
-            default:
-                ReactGA.event({
-                    category: `Context Menu`,
-                    action: `Opened Default Context Menu`
-                });
-                this.showContextMenu(e, "default");
+        if (e.target.dataset.context === "desktop-area") {
+            ReactGA.event({
+                category: `Context Menu`,
+                action: `Opened Desktop Context Menu`
+            });
+            this.showContextMenu(e, "desktop");
         }
     }
 
-    showContextMenu = (e, menuName /* context menu name */) => {
+    showContextMenu = (e, menuName) => {
         let { posx, posy } = this.getMenuPosition(e);
         let contextMenu = document.getElementById(`${menuName}-menu`);
 
@@ -129,6 +121,30 @@ export class Desktop extends Component {
             menus[key] = false;
         });
         this.setState({ context_menus: menus });
+    }
+
+    showFolderContextMenu = (e, folderId) => {
+        e.preventDefault();
+        this.hideAllContextMenu();
+        
+        let { posx, posy } = this.getMenuPosition(e);
+        let contextMenu = document.getElementById("folder-menu");
+
+        if (contextMenu) {
+            if (posx + $(contextMenu).width() > window.innerWidth) posx -= $(contextMenu).width();
+            if (posy + $(contextMenu).height() > window.innerHeight) posy -= $(contextMenu).height();
+
+            posx = posx.toString() + "px";
+            posy = posy.toString() + "px";
+
+            contextMenu.style.left = posx;
+            contextMenu.style.top = posy;
+        }
+
+        this.setState({ 
+            context_menus: { ...this.state.context_menus, folder: true },
+            selectedFolderId: folderId
+        });
     }
 
     getMenuPosition = (e) => {
@@ -240,7 +256,8 @@ export class Desktop extends Component {
                     name: app.title,
                     id: app.id,
                     icon: app.icon,
-                    openApp: this.openApp
+                    openApp: this.openApp,
+                    onFolderContextMenu: this.showFolderContextMenu
                 }
 
                 appsJsx.push(
@@ -270,6 +287,7 @@ export class Desktop extends Component {
                     minimized: this.state.minimized_windows[app.id],
                     changeBackgroundImage: this.props.changeBackgroundImage,
                     bg_image_name: this.props.bg_image_name,
+                    hideWindowChrome: app.hideWindowChrome,
                 }
 
                 windowsJsx.push(
@@ -447,6 +465,21 @@ export class Desktop extends Component {
         this.setState({ showNameBar: true });
     }
 
+    deleteFolder = (folderId) => {
+        // Remove from apps array
+        const index = apps.findIndex(app => app.id === folderId);
+        if (index !== -1) {
+            apps.splice(index, 1);
+        }
+        
+        // Remove from local storage
+        let new_folders = JSON.parse(localStorage.getItem('new_folders') || '[]');
+        new_folders = new_folders.filter(folder => folder.id !== folderId);
+        localStorage.setItem("new_folders", JSON.stringify(new_folders));
+        
+        this.updateAppsData();
+    }
+
     addToDesktop = (folder_name) => {
         folder_name = folder_name.trim();
         let folder_id = folder_name.replace(/\s+/g, '-').toLowerCase();
@@ -520,9 +553,11 @@ export class Desktop extends Component {
                 {/* Desktop Apps */}
                 {this.renderDesktopApps()}
 
-                {/* Context Menus */}
+                {/* Desktop Context Menu */}
                 <DesktopMenu active={this.state.context_menus.desktop} openApp={this.openApp} addNewFolder={this.addNewFolder} />
-                <DefaultMenu active={this.state.context_menus.default} />
+
+                {/* Folder Context Menu */}
+                <FolderMenu active={this.state.context_menus.folder} deleteFolder={this.deleteFolder} selectedFolderId={this.state.selectedFolderId} />
 
                 {/* Folder Input Name Bar */}
                 {

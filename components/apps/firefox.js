@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 export class Firefox extends Component {
     constructor() {
         super();
-        this.home_url = 'https://www.kali.org/';
+        this.home_url = 'https://www.google.com/';
         this.state = {
-            url: 'https://www.kali.org/',
-            display_url: "https://www.kali.org/",
+            url: 'https://www.google.com/',
+            display_url: "https://www.google.com/",
         }
     }
 
@@ -28,7 +28,7 @@ export class Firefox extends Component {
     }
 
     goToHome = () => {
-        this.setState({ url: this.home_url, display_url: "https://www.kali.org/" });
+        this.setState({ url: this.home_url, display_url: "https://www.google.com/" });
         this.refreshChrome();
     }
 
@@ -46,9 +46,9 @@ export class Firefox extends Component {
 
             url = encodeURI(url);
             display_url = url;
-            if (url.includes("kali.org")) { // 😅
-                url = 'https://www.kali.org/';
-                display_url = "https://www.kali.org/";
+            if (url.includes("google.com")) { 
+                url = 'https://www.google.com/';
+                display_url = "https://www.google.com/";
             }
             this.setState({ url, display_url: url });
             this.storeVisitedUrl(url, display_url);
@@ -87,5 +87,5 @@ export class Firefox extends Component {
 export default Firefox
 
 export const displayFirefox = () => {
-    return <Firefox> </Firefox>;
+    return <Firefox />;
 }

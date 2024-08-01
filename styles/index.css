@@ -95,12 +95,14 @@ input[type=range].kali-slider::-webkit-slider-thumb {
     height: calc(100% - 10px);
     width: calc(100% + 10px);
     cursor: e-resize;
+    pointer-events: none;
 }
 
 .window-x-border {
     height: calc(100% + 10px);
     width: calc(100% - 10px);
     cursor: n-resize;
+    pointer-events: none;
 }
 
 .notFocused {

@@ -1,0 +1,873 @@
+import React, { Component } from 'react';
+import ReactGA from 'react-ga';
+import Typewriter from 'typewriter-effect';
+
+export class AboutAli extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            currentPath: ['home', 'shailesh', 'portfolio'],
+            currentFolder: 'portfolio',
+            activePlace: 'About Me',
+            selectedFile: null,
+            filePreview: false,
+            fileContent: ''
+        }
+    }
+
+    componentDidMount() {
+        ReactGA.pageview('/portfolio');
+    }
+
+    // File system structure
+    fileSystem = {
+        'About Me': [
+            { name: 'intro.txt', type: 'file', content: `Hi! I'm Shailesh Suryawanshi\n\nA passionate Full-Stack Developer and Software Engineer with expertise in Python, React, Node.js, and Machine Learning.\n\nCurrently pursuing B.Tech in Electronics & Telecommunication at PICT Pune (CGPA: 8.32).\n\nI love building scalable applications and solving complex problems.` },
+            { name: 'tech-stack.txt', type: 'file', content: `Core Technologies:\n• Python\n• JavaScript\n• React.js\n• Node.js\n• Flask\n• Firebase\n• MongoDB\n• SQL\n\nFull-Stack Developer | ML Enthusiast | Problem Solver` },
+            { name: 'summary.txt', type: 'file', content: `Professional Summary:\n\nExperienced in full-stack development, REST APIs, cloud-integrated applications, and ML-powered features.\n\n✓ 100+ LeetCode problems solved\n✓ 1st Rank in Cybersecurity Workshop Quiz\n✓ Multiple production projects deployed\n✓ Strong foundation in DSA, OOP, DBMS, OS, CN` }
+        ],
+        'Education': [
+            { name: 'btech.txt', type: 'file', content: `Bachelor of Technology - Electronics and Telecommunication\n\nPune Institute of Computer Technology\nPune, Maharashtra, India\n\nCGPA: 8.32\nExpected Graduation: 2027\n\nRelevant Coursework:\n• Data Structures & Algorithms\n• Database Management Systems\n• Operating Systems\n• Computer Networks\n• Software Engineering` },
+            { name: 'diploma.txt', type: 'file', content: `Diploma in Computer Science and Engineering\n\nGovernment Polytechnic Khamgaon\nKhamgaon, Maharashtra, India\n\nPercentage: 91.94%\nGraduated: 2021\n\nFocus Areas:\n• Programming Fundamentals\n• Web Development\n• Database Systems\n• Computer Hardware` },
+            { name: 'achievements.txt', type: 'file', content: `Scholastic Achievements:\n\n🥇 Secured 1st Rank in a national Cybersecurity Workshop Quiz (Pursuit 2023, SSGMCE)\n\n🧩 Solved 100+ DSA problems on LeetCode, improving algorithmic and coding proficiency\n\n🏆 Multiple hackathon participations and project competitions` }
+        ],
+        'Skills': [
+            { name: 'Programming-Languages', type: 'folder', files: ['Python', 'JavaScript', 'Java', 'TypeScript', 'C++', 'C', 'PHP', 'SQL'] },
+            { name: 'Frontend', type: 'folder', files: ['React', 'Next.js', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind'] },
+            { name: 'Backend', type: 'folder', files: ['Node.js', 'Flask', 'Express', 'REST API', 'Authentication'] },
+            { name: 'Databases', type: 'folder', files: ['MongoDB', 'Firebase', 'MySQL', 'PostgreSQL', 'SQLite'] },
+            { name: 'ML-and-Data', type: 'folder', files: ['TensorFlow', 'PyTorch', 'Sklearn', 'Pandas', 'NumPy', 'Seaborn'] },
+            { name: 'DevOps-and-Tools', type: 'folder', files: ['Docker', 'Kubernetes', 'AWS', 'Git', 'GitHub', 'VS Code', 'Jupyter'] }
+        ],
+        'Projects': [
+            { name: 'vitalnex.txt', type: 'file', content: `VitalNex - Student Needs Application\n\nDuration: July 2023 - April 2024\nGitHub: github.com/ShaileshSurya\n\nDescription:\nDeveloped a comprehensive platform to manage daily essentials for students and travelers, offering services like room rentals, mess options, and medical assistance.\n\nKey Features:\n• Built with intuitive XML-based UI\n• Firebase Authentication for secure access\n• Real-time database integration\n• Scalable backend architecture\n\nTech Stack: Android, XML, Firebase, Java\n\nImpact: Improved student accommodation search efficiency by 40%` },
+            { name: 'mediplus.txt', type: 'file', content: `MediPlus - Telemedicine Platform\n\nDuration: May 2024 - Nov 2024\nGitHub: github.com/ShaileshSurya\n\nDescription:\nDeveloped an AI-powered telemedicine platform enabling virtual consultations, prescription management, and health monitoring.\n\nKey Features:\n• AI chatbot for symptom analysis\n• Video consultation integration\n• Electronic health records (EHR)\n• Real-time appointment scheduling\n\nTech Stack: Python, Flask, React, MongoDB, TensorFlow\n\nImpact: Reduced patient wait times by 60%, served 500+ users` },
+            { name: 'sharman-foundation.txt', type: 'file', content: `Sharman Foundation Website\n\nDuration: Aug 2024 - Nov 2024\nRole: Full Stack Developer Intern\n\nDescription:\nBuilt a comprehensive website for an NGO to showcase their social initiatives and facilitate donations.\n\nKey Features:\n• Responsive MERN stack architecture\n• Payment gateway integration\n• Admin dashboard for content management\n• Volunteer registration system\n\nTech Stack: MongoDB, Express.js, React, Node.js\n\nImpact: Increased online donations by 35%` },
+            { name: 'phishing-detection.txt', type: 'file', content: `Phishing Detection ML Model\n\nDuration: Jan 2024 - Mar 2024\n\nDescription:\nDeveloped a machine learning model to detect phishing websites using URL analysis and content inspection.\n\nKey Features:\n• Random Forest classifier with 95% accuracy\n• Feature engineering from URL patterns\n• Real-time prediction API\n• Browser extension integration\n\nTech Stack: Python, Scikit-learn, Flask, pandas, NumPy\n\nDataset: 10,000+ URLs\nAccuracy: 95.2%` }
+        ],
+        'Experience': [
+            { name: 'sumago-infotech.txt', type: 'file', content: `Python Developer Intern\nSumago Infotech\n\nDuration: May 2024 - Aug 2024\nLocation: Remote\n\nResponsibilities:\n• Developed REST APIs using Flask and FastAPI\n• Implemented data processing pipelines with pandas and NumPy\n• Built automated testing suites with pytest\n• Integrated third-party APIs for payment and authentication\n• Optimized database queries reducing response time by 30%\n\nTechnologies: Python, Flask, FastAPI, MongoDB, PostgreSQL, Docker\n\nAchievements:\n✓ Reduced API response time by 30%\n✓ Implemented 50+ unit tests\n✓ Deployed 3 production APIs` },
+            { name: 'sharman-foundation-intern.txt', type: 'file', content: `Full Stack Developer Intern\nSharman Foundation\n\nDuration: Aug 2024 - Nov 2024\nLocation: Remote\n\nResponsibilities:\n• Built responsive web applications using MERN stack\n• Implemented secure authentication and authorization\n• Designed RESTful APIs with Express.js\n• Created admin dashboards with real-time analytics\n• Integrated payment gateways (Razorpay)\n\nTechnologies: MongoDB, Express.js, React, Node.js, Tailwind CSS\n\nAchievements:\n✓ Delivered full-stack website in 3 months\n✓ Increased user engagement by 40%\n✓ Implemented secure payment processing` },
+            { name: 'design-media.txt', type: 'file', content: `Design & Media Experience\n\nGraphic Design:\n• Created promotional materials for college events\n• Designed social media graphics and banners\n• Proficient in Canva, Figma, Adobe Photoshop\n\nContent Creation:\n• Technical blog writing on Medium\n• Documentation for open-source projects\n• Social media content strategy\n\nSkills:\n• UI/UX Design\n• Brand Identity\n• Typography\n• Color Theory` }
+        ],
+        'Resume': [
+            { name: 'Shailesh_Suryawanshi_Resume.pdf', type: 'file', content: 'PDF_FILE' },
+            { name: 'cover-letter.txt', type: 'file', content: `Dear Hiring Manager,\n\nI am writing to express my strong interest in the Software Engineer position at your company.\n\nAs a Full-Stack Developer with expertise in Python, JavaScript, React, and Node.js, I have successfully delivered multiple production-grade applications. My experience includes:\n\n• Building scalable REST APIs with Flask and Express.js\n• Developing responsive web applications with React and Next.js\n• Implementing ML models for real-world applications\n• Working with cloud platforms (AWS) and containerization (Docker)\n\nDuring my internship at Sumago Infotech, I reduced API response times by 30% and implemented comprehensive testing suites. At Sharman Foundation, I delivered a full-stack MERN application that increased user engagement by 40%.\n\nI am excited about the opportunity to contribute to your team and help build innovative solutions.\n\nThank you for considering my application.\n\nBest regards,\nShailesh Suryawanshi\nEmail: shailesh@example.com\nPhone: +91 XXXXXXXXXX\nLinkedIn: linkedin.com/in/shailesh-suryawanshi\nGitHub: github.com/ShaileshSurya` }
+        ]
+    };
+
+    handlePlaceClick = (place) => {
+        this.setState({
+            activePlace: place,
+            currentFolder: place,
+            currentPath: ['home', 'shailesh', 'portfolio', place.toLowerCase().replace(/\s+/g, '-')],
+            selectedFile: null,
+            filePreview: false
+        });
+    }
+
+    handleFileClick = (file) => {
+        if (file.type === 'folder') {
+            // Open subfolder (for Skills categories)
+            this.setState({
+                selectedFile: file,
+                currentPath: [...this.state.currentPath, file.name]
+            });
+        } else {
+            // Open file preview
+            if (file.content === 'PDF_FILE') {
+                // Open actual PDF
+                window.open('./files/Shailesh_Suryawanshi.pdf', '_blank');
+            } else {
+                this.setState({
+                    selectedFile: file,
+                    filePreview: true,
+                    fileContent: file.content
+                });
+            }
+        }
+    }
+
+    closePreview = () => {
+        this.setState({
+            filePreview: false,
+            selectedFile: null,
+            fileContent: ''
+        });
+    }
+
+    goBack = () => {
+        if (this.state.currentPath.length > 3) {
+            const newPath = this.state.currentPath.slice(0, -1);
+            this.setState({
+                currentPath: newPath,
+                selectedFile: null
+            });
+        }
+    }
+
+    render() {
+        const { currentPath, currentFolder, activePlace, selectedFile, filePreview, fileContent } = this.state;
+        const currentFiles = this.fileSystem[activePlace] || [];
+        
+        // If we're in a subfolder, show subfolder files
+        const displayFiles = selectedFile && selectedFile.type === 'folder' 
+            ? selectedFile.files.map(name => ({ name: name + '.txt', type: 'file', content: `${name}\n\nA powerful technology in my skillset.` }))
+            : currentFiles;
+
+        return (
+            <div className="w-full h-full flex items-center justify-center overflow-y-auto">
+                <LinuxFileManager
+                    currentPath={currentPath}
+                    currentFolder={currentFolder}
+                    activePlace={activePlace}
+                    files={displayFiles}
+                    onPlaceClick={this.handlePlaceClick}
+                    onFileClick={this.handleFileClick}
+                    onBack={this.goBack}
+                    filePreview={filePreview}
+                    fileContent={fileContent}
+                    selectedFile={selectedFile}
+                    onClosePreview={this.closePreview}
+                />
+            </div>
+        );
+    }
+}
+
+// Linux File Manager Component
+function LinuxFileManager({ currentPath, currentFolder, activePlace, files, onPlaceClick, onFileClick, onBack, filePreview, fileContent, selectedFile, onClosePreview }) {
+    const places = ['About Me', 'Education', 'Skills', 'Projects', 'Experience', 'Resume'];
+    const pathString = '/' + currentPath.join('/');
+
+    return (
+        <div className="w-full max-w-6xl mx-auto px-4" style={{ fontFamily: '"Noto Sans", "Ubuntu", sans-serif' }}>
+            {/* Linux File Manager Window */}
+            <div className="overflow-hidden" style={{
+                backgroundColor: '#1e1e1e',
+                borderRadius: '8px 8px 4px 4px',
+                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3)'
+            }}>
+                
+                {/* Window Header Bar */}
+                <div className="flex items-center justify-between px-3" style={{
+                    height: '38px',
+                    background: 'linear-gradient(to bottom, #353535 0%, #2d2d2d 100%)',
+                    borderBottom: '1px solid #1a1a1a'
+                }}>
+                    <div className="flex items-center space-x-2">
+                        <svg className="w-4 h-4" style={{ color: '#5294e2' }} fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                        </svg>
+                        <span style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.85)', fontWeight: '500' }}>
+                            Portfolio - Files
+                        </span>
+                    </div>
+
+                    {/* Window Control Buttons */}
+                    <div className="flex items-center space-x-2">
+                        <button className="w-5 h-5 rounded-full flex items-center justify-center hover:bg-gray-600 transition" style={{ backgroundColor: '#3d3d3d' }}>
+                            <svg className="w-2.5 h-2.5" style={{ color: '#9d9d9d' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M20 12H4" />
+                            </svg>
+                        </button>
+                        <button className="w-5 h-5 rounded-full flex items-center justify-center hover:bg-gray-600 transition" style={{ backgroundColor: '#3d3d3d' }}>
+                            <svg className="w-2.5 h-2.5" style={{ color: '#9d9d9d' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <rect x="6" y="6" width="12" height="12" strokeWidth={2} />
+                            </svg>
+                        </button>
+                        <button className="w-5 h-5 rounded-full flex items-center justify-center hover:bg-red-600 transition" style={{ backgroundColor: '#cc575d' }}>
+                            <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                {/* Navigation Toolbar */}
+                <div className="flex items-center px-3 space-x-2" style={{
+                    height: '42px',
+                    backgroundColor: '#2a2a2a',
+                    borderBottom: '1px solid #1f1f1f'
+                }}>
+                    {/* Nav Buttons */}
+                    <div className="flex items-center space-x-1">
+                        <button onClick={onBack} className="p-1.5 rounded hover:bg-gray-700 transition">
+                            <svg className="w-4 h-4" style={{ color: '#9d9d9d' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button className="p-1.5 rounded hover:bg-gray-700 transition">
+                            <svg className="w-4 h-4" style={{ color: '#9d9d9d' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                        <button className="p-1.5 rounded hover:bg-gray-700 transition ml-1">
+                            <svg className="w-4 h-4" style={{ color: '#9d9d9d' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    {/* Breadcrumb Bar */}
+                    <div className="flex-1 flex items-center px-3 rounded" style={{
+                        backgroundColor: '#1e1e1e',
+                        border: '1px solid #1a1a1a',
+                        height: '28px'
+                    }}>
+                        <span style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.85)' }}>
+                            {pathString}
+                        </span>
+                    </div>
+
+                    {/* Search Button */}
+                    <button className="p-1.5 rounded hover:bg-gray-700 transition">
+                        <svg className="w-4 h-4" style={{ color: '#9d9d9d' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Main Content Area */}
+                <div className="flex" style={{ height: '500px' }}>
+
+                    {/* Left Sidebar - Places */}
+                    <div style={{
+                        width: '200px',
+                        backgroundColor: '#242424',
+                        borderRight: '1px solid #1a1a1a',
+                        paddingTop: '12px',
+                        paddingBottom: '12px',
+                        overflowY: 'auto'
+                    }}>
+                        <div className="px-2">
+                            <div style={{
+                                fontSize: '10px',
+                                color: 'rgba(255, 255, 255, 0.4)',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.5px',
+                                fontWeight: '600',
+                                marginBottom: '8px',
+                                paddingLeft: '8px'
+                            }}>
+                                PLACES
+                            </div>
+
+                            <div className="space-y-0.5">
+                                {places.map((place) => {
+                                    const isActive = activePlace === place;
+                                    return (
+                                        <div
+                                            key={place}
+                                            onClick={() => onPlaceClick(place)}
+                                            className="flex items-center space-x-2 px-2 py-2 rounded cursor-pointer transition-all"
+                                            style={{
+                                                backgroundColor: isActive ? 'rgba(82, 148, 226, 0.15)' : 'transparent',
+                                                borderLeft: isActive ? '3px solid #5294e2' : '3px solid transparent',
+                                                color: isActive ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.7)',
+                                                fontSize: '13px'
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                if (!isActive) {
+                                                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                                                }
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                if (!isActive) {
+                                                    e.currentTarget.style.backgroundColor = 'transparent';
+                                                }
+                                            }}
+                                        >
+                                            <svg className="w-4 h-4 flex-shrink-0" style={{ color: isActive ? '#5294e2' : '#7d7d7d' }} fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                                            </svg>
+                                            <span className="truncate">{place}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Content - File Grid */}
+                    <div className="flex-1 overflow-auto" style={{
+                        backgroundColor: '#1e1e1e',
+                        padding: '20px'
+                    }}>
+                        <div className="grid grid-cols-5 gap-4">
+                            {displayFiles.map((file, index) => (
+                                <div
+                                    key={index}
+                                    className="flex flex-col items-center cursor-pointer group"
+                                    style={{ width: '90px' }}
+                                    onClick={() => onFileClick(file)}
+                                >
+                                    {/* File/Folder Icon */}
+                                    <div className="w-12 h-12 flex items-center justify-center mb-2 transition-transform group-hover:scale-105">
+                                        {file.type === 'folder' ? (
+                                            <svg className="w-11 h-11 transition-opacity group-hover:opacity-80" style={{ color: '#5294e2' }} fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                                            </svg>
+                                        ) : (
+                                            <svg className="w-11 h-11 transition-opacity group-hover:opacity-80" style={{ color: file.name.endsWith('.pdf') ? '#f40f02' : '#8ca0b3' }} fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9l-7-7z" />
+                                                <path d="M13 2v7h7" />
+                                            </svg>
+                                        )}
+                                    </div>
+
+                                    {/* File Name */}
+                                    <div className="text-center break-words w-full leading-tight px-1 group-hover:underline transition-all" style={{
+                                        fontSize: '11.5px',
+                                        color: 'rgba(255, 255, 255, 0.85)',
+                                        lineHeight: '1.3'
+                                    }}>
+                                        {file.name}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Status Bar */}
+                <div className="flex items-center justify-between px-3" style={{
+                    height: '26px',
+                    backgroundColor: '#2b5278',
+                    borderTop: '1px solid #1a1a1a',
+                    fontSize: '11px',
+                    color: 'rgba(255, 255, 255, 0.9)'
+                }}>
+                    <div>{displayFiles.length} items</div>
+                    <div>{currentFolder}</div>
+                </div>
+            </div>
+
+            {/* File Preview Modal */}
+            {filePreview && (
+                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onClick={onClosePreview}>
+                    <div className="max-w-3xl w-full rounded-lg overflow-hidden" style={{ backgroundColor: '#1e1e1e', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8)' }} onClick={(e) => e.stopPropagation()}>
+                        {/* Preview Header */}
+                        <div className="flex items-center justify-between px-4 py-3" style={{ backgroundColor: '#2a2a2a', borderBottom: '1px solid #1a1a1a' }}>
+                            <div className="flex items-center space-x-2">
+                                <svg className="w-4 h-4" style={{ color: '#8ca0b3' }} fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9l-7-7z" />
+                                    <path d="M13 2v7h7" />
+                                </svg>
+                                <span style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.85)' }}>
+                                    {selectedFile?.name}
+                                </span>
+                            </div>
+                            <button onClick={onClosePreview} className="hover:bg-gray-700 rounded p-1 transition">
+                                <svg className="w-4 h-4" style={{ color: '#9d9d9d' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        {/* Preview Content */}
+                        <div className="p-6 overflow-y-auto" style={{ maxHeight: '70vh', fontFamily: '"Ubuntu Mono", monospace', fontSize: '13px', color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.6', whiteSpace: 'pre-wrap' }}>
+                            {fileContent}
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+export default AboutAli;
+
+export const displayAboutAli = () => {
+    return <AboutAli />;
+}
+
+
+function About() {    showNavBar = () => {
+        this.setState({ navbar: !this.state.navbar });
+    }
+
+    renderNavLinks = () => {
+        return (
+            <>
+                <div id="about" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "about" ? " bg-ub-blue bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                    <img className=" w-3 md:w-4" alt="about shailesh" src="./themes/Flat-Remix-Blue-Dark/status/about.svg" />
+                    <span className=" ml-1 md:ml-2 text-gray-50 ">About Me</span>
+                </div>
+                <div id="education" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "education" ? " bg-ub-blue bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                    <img className=" w-3 md:w-4" alt="shailesh education" src="./themes/Flat-Remix-Blue-Dark/status/education.svg" />
+                    <span className=" ml-1 md:ml-2 text-gray-50 ">Education</span>
+                </div>
+                <div id="skills" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "skills" ? " bg-ub-blue bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                    <img className=" w-3 md:w-4" alt="shailesh skills" src="./themes/Flat-Remix-Blue-Dark/status/skills.svg" />
+                    <span className=" ml-1 md:ml-2 text-gray-50 ">Skills</span>
+                </div>
+                <div id="projects" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "projects" ? " bg-ub-blue bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                    <img className=" w-3 md:w-4" alt="shailesh projects" src="./themes/Flat-Remix-Blue-Dark/status/projects.svg" />
+                    <span className=" ml-1 md:ml-2 text-gray-50 ">Projects</span>
+                </div>
+                <div id="experience" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "experience" ? " bg-ub-blue bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                    <img className=" w-3 md:w-4" alt="shailesh experience" src="./themes/Flat-Remix-Blue-Dark/status/projects.svg" />
+                    <span className=" ml-1 md:ml-2 text-gray-50 ">Experience</span>
+                </div>
+                <div id="resume" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "resume" ? " bg-ub-blue bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                    <img className=" w-3 md:w-4" alt="shailesh resume" src="./themes/Flat-Remix-Blue-Dark/status/download.svg" />
+                    <span className=" ml-1 md:ml-2 text-gray-50 ">Resume</span>
+                </div>
+            </>
+        );
+    }
+
+    render() {
+        return (
+            <div className="w-full h-full flex bg-ub-cool-grey text-white select-none relative">
+                <div className="md:flex hidden flex-col w-1/4 md:w-1/5 text-sm overflow-y-auto windowMainScreen border-r border-black">
+                    {this.renderNavLinks()}
+                </div>
+                <div onClick={this.showNavBar} className="md:hidden flex flex-col items-center justify-center absolute bg-ub-cool-grey rounded w-6 h-6 top-1 left-1">
+                    <div className=" w-3.5 border-t border-white"></div>
+                    <div className=" w-3.5 border-t border-white" style={{ marginTop: "2pt", marginBottom: "2pt" }}></div>
+                    <div className=" w-3.5 border-t border-white"></div>
+                    <div className={(this.state.navbar ? " visible animateShow z-30 " : " invisible ") + " md:hidden text-xs absolute bg-ub-cool-grey py-0.5 px-1 rounded-sm top-full mt-1 left-0 shadow border-black border border-opacity-20"}>
+                        {this.renderNavLinks()}
+                    </div>
+                </div>
+                <div className="flex flex-col w-3/4 md:w-4/5 justify-start items-center flex-grow bg-ub-grey overflow-y-auto windowMainScreen">
+                    {this.state.screen}
+                </div>
+            </div>
+        );
+    }
+}
+    return (
+        <>
+            <div className="flex items-center font-medium relative text-2xl mt-2 md:mt-4 mb-4">
+                Education <img className="w-16 inline" src="./images/logos/pic-3.png"/>
+                <div className="absolute pt-px bg-white mt-px top-full w-full">
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
+                </div>
+            </div>
+            <ul className=" w-10/12  mt-4 ml-4 px-0 md:px-1">
+                <li className="list-disc">
+                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
+                    Bachelor of Technology - Electronics and Telecommunication
+                    </div>
+                    <div className=" text-sm text-gray-400 mt-0.5">Expected Graduation: 2027</div>
+                    <div className=" text-sm md:text-base">Pune Institute of Computer Technology</div>
+                    <div className="text-sm text-gray-300 font-bold mt-1">CGPA: 8.32 | Location: Pune, India</div>
+                </li>
+                <li className="list-disc mt-5">
+                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
+                    Diploma in Computer Science and Engineering
+                    </div>
+                    <div className=" text-sm text-gray-400 mt-0.5">Graduated: 2024</div>
+                    <div className=" text-sm md:text-base">Government Polytechnic Khamgaon</div>
+                    <div className="text-sm text-gray-300 font-bold mt-1">Percentage: 91.94% | Location: Khamgaon, Maharashtra, India</div>
+                </li>
+                <li className="list-disc mt-5">
+                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
+                    Scholastic Achievements
+                    </div>  
+                    <div className="text-sm text-gray-300 mt-1">🥇 Secured 1st Rank in a national Cybersecurity Workshop Quiz (Pursuit 2023, SSGMCE).</div>
+                    <div className="text-sm text-gray-300 mt-1">🧩 Solved 100+ DSA problems on LeetCode, improving algorithmic and coding proficiency.</div>
+                </li>
+            </ul>
+        </>
+    )
+}
+function Skills() {
+    const [activeCategory, setActiveCategory] = React.useState('ML & Data');
+    
+    const categories = {
+        'Programming Languages': ['Python', 'JavaScript', 'Java', 'TypeScript', 'C++', 'C', 'PHP', 'SQL'],
+        'Frontend': ['React', 'Next.js', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind'],
+        'Backend & APIs': ['Node.js', 'Flask', 'Express', 'REST API', 'Auth'],
+        'Databases': ['MongoDB', 'Firebase', 'MySQL', 'PostgreSQL', 'SQLite'],
+        'ML & Data': ['TensorFlow', 'PyTorch', 'Sklearn', 'Pandas', 'NumPy', 'Seaborn'],
+        'DevOps & Tools': ['Docker', 'Kubernetes', 'AWS', 'Git', 'GitHub', 'VS Code', 'Jupyter']
+    };
+
+    const categorySlug = activeCategory.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
+
+    return (
+        <>
+            <div className="flex items-center font-medium relative text-2xl mt-2 md:mt-4 mb-6">
+                Technical Skills <img className="w-16 inline" src="./images/logos/pic-4.png" />
+                <div className="absolute pt-px bg-white mt-px top-full w-full">
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
+                </div>
+            </div>
+
+            {/* Linux File Manager Window */}
+            <div className="w-full md:w-11/12 mx-auto" style={{fontFamily: '"Noto Sans", "Ubuntu", sans-serif'}}>
+                
+                {/* Window Container with rounded corners and shadow */}
+                <div className="overflow-hidden" style={{
+                    backgroundColor: '#1e1e1e',
+                    borderRadius: '8px 8px 4px 4px',
+                    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3)'
+                }}>
+                    
+                    {/* Window Header Bar */}
+                    <div className="flex items-center justify-between px-3" style={{
+                        height: '38px',
+                        background: 'linear-gradient(to bottom, #353535 0%, #2d2d2d 100%)',
+                        borderBottom: '1px solid #1a1a1a'
+                    }}>
+                        <div className="flex items-center space-x-2">
+                            <svg className="w-4 h-4" style={{color: '#5294e2'}} fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                            </svg>
+                            <span style={{fontSize: '13px', color: 'rgba(255, 255, 255, 0.85)', fontWeight: '500'}}>
+                                Files
+                            </span>
+                        </div>
+                        
+                        {/* Window Control Buttons */}
+                        <div className="flex items-center space-x-2">
+                            <button className="w-5 h-5 rounded-full flex items-center justify-center hover:bg-gray-600 transition" style={{backgroundColor: '#3d3d3d'}}>
+                                <svg className="w-2.5 h-2.5" style={{color: '#9d9d9d'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M20 12H4" />
+                                </svg>
+                            </button>
+                            <button className="w-5 h-5 rounded-full flex items-center justify-center hover:bg-gray-600 transition" style={{backgroundColor: '#3d3d3d'}}>
+                                <svg className="w-2.5 h-2.5" style={{color: '#9d9d9d'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <rect x="6" y="6" width="12" height="12" strokeWidth={2} />
+                                </svg>
+                            </button>
+                            <button className="w-5 h-5 rounded-full flex items-center justify-center hover:bg-red-600 transition" style={{backgroundColor: '#cc575d'}}>
+                                <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Navigation Toolbar */}
+                    <div className="flex items-center px-3 space-x-2" style={{
+                        height: '42px',
+                        backgroundColor: '#2a2a2a',
+                        borderBottom: '1px solid #1f1f1f'
+                    }}>
+                        {/* Nav Buttons */}
+                        <div className="flex items-center space-x-1">
+                            <button className="p-1.5 rounded hover:bg-gray-700 transition">
+                                <svg className="w-4 h-4" style={{color: '#9d9d9d'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button className="p-1.5 rounded hover:bg-gray-700 transition">
+                                <svg className="w-4 h-4" style={{color: '#9d9d9d'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                            <button className="p-1.5 rounded hover:bg-gray-700 transition ml-1">
+                                <svg className="w-4 h-4" style={{color: '#9d9d9d'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        {/* Breadcrumb Bar */}
+                        <div className="flex-1 flex items-center px-3 rounded" style={{
+                            backgroundColor: '#1e1e1e',
+                            border: '1px solid #1a1a1a',
+                            height: '28px'
+                        }}>
+                            <span style={{fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)'}}>
+                                /home/shailesh/skills/<span style={{color: 'rgba(255, 255, 255, 0.85)'}}>{categorySlug}</span>
+                            </span>
+                        </div>
+
+                        {/* Search Button */}
+                        <button className="p-1.5 rounded hover:bg-gray-700 transition">
+                            <svg className="w-4 h-4" style={{color: '#9d9d9d'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    {/* Main Content Area */}
+                    <div className="flex" style={{height: '400px'}}>
+                        
+                        {/* Left Sidebar - Places */}
+                        <div style={{
+                            width: '200px',
+                            backgroundColor: '#242424',
+                            borderRight: '1px solid #1a1a1a',
+                            paddingTop: '12px',
+                            paddingBottom: '12px'
+                        }}>
+                            <div className="px-2">
+                                <div style={{
+                                    fontSize: '10px',
+                                    color: 'rgba(255, 255, 255, 0.4)',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.5px',
+                                    fontWeight: '600',
+                                    marginBottom: '8px',
+                                    paddingLeft: '8px'
+                                }}>
+                                    PLACES
+                                </div>
+                                
+                                <div className="space-y-0.5">
+                                    {Object.keys(categories).map((category) => {
+                                        const isActive = activeCategory === category;
+                                        return (
+                                            <div
+                                                key={category}
+                                                onClick={() => setActiveCategory(category)}
+                                                className="flex items-center space-x-2 px-2 py-2 rounded cursor-pointer transition-all"
+                                                style={{
+                                                    backgroundColor: isActive ? 'rgba(82, 148, 226, 0.15)' : 'transparent',
+                                                    borderLeft: isActive ? '3px solid #5294e2' : '3px solid transparent',
+                                                    color: isActive ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.7)',
+                                                    fontSize: '13px'
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    if (!isActive) {
+                                                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                                                    }
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    if (!isActive) {
+                                                        e.currentTarget.style.backgroundColor = 'transparent';
+                                                    }
+                                                }}
+                                            >
+                                                <svg className="w-4 h-4 flex-shrink-0" style={{color: isActive ? '#5294e2' : '#7d7d7d'}} fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                                                </svg>
+                                                <span className="truncate">{category}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Content - File Grid */}
+                        <div className="flex-1 overflow-auto" style={{
+                            backgroundColor: '#1e1e1e',
+                            padding: '20px'
+                        }}>
+                            <div className="grid grid-cols-6 gap-4">
+                                {categories[activeCategory].map((skill, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex flex-col items-center cursor-pointer group"
+                                        style={{width: '90px'}}
+                                    >
+                                        {/* File Icon */}
+                                        <div className="w-12 h-12 flex items-center justify-center mb-2 transition-transform group-hover:scale-105">
+                                            <svg className="w-11 h-11 transition-opacity group-hover:opacity-80" style={{color: '#8ca0b3'}} fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9l-7-7z" />
+                                                <path d="M13 2v7h7" />
+                                            </svg>
+                                        </div>
+                                        
+                                        {/* File Name */}
+                                        <div className="text-center break-words w-full leading-tight px-1 group-hover:underline transition-all" style={{
+                                            fontSize: '11.5px',
+                                            color: 'rgba(255, 255, 255, 0.85)',
+                                            lineHeight: '1.3'
+                                        }}>
+                                            {skill}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Status Bar */}
+                    <div className="flex items-center justify-between px-3" style={{
+                        height: '26px',
+                        backgroundColor: '#2b5278',
+                        borderTop: '1px solid #1a1a1a',
+                        fontSize: '11px',
+                        color: 'rgba(255, 255, 255, 0.9)'
+                    }}>
+                        <div>{categories[activeCategory].length} items</div>
+                        <div>{activeCategory}</div>
+                    </div>
+                </div>
+
+                {/* Terminal Output */}
+                <div className="mt-4 rounded p-3" style={{
+                    backgroundColor: '#0d0d0d',
+                    border: '1px solid #1a1a1a',
+                    fontFamily: '"Ubuntu Mono", "JetBrains Mono", monospace'
+                }}>
+                    <div style={{fontSize: '12px'}}>
+                        <span style={{color: '#4ec9b0'}}>┌──(</span>
+                        <span style={{color: '#5294e2'}}>shailesh</span>
+                        <span style={{color: 'rgba(255, 255, 255, 0.85)'}}>㉿</span>
+                        <span style={{color: '#5294e2'}}>kali</span>
+                        <span style={{color: '#4ec9b0'}}>)-[</span>
+                        <span style={{color: '#5294e2'}}>~/portfolio/skills</span>
+                        <span style={{color: '#4ec9b0'}}>]</span>
+                    </div>
+                    <div style={{fontSize: '12px', marginTop: '4px'}}>
+                        <span style={{color: '#4ec9b0'}}>└─</span>
+                        <span style={{color: '#5294e2'}}>$</span>
+                        <span style={{color: 'rgba(255, 255, 255, 0.6)', marginLeft: '8px'}}>
+                            echo "Experienced in full-stack development, REST APIs, cloud-integrated applications, and ML-powered features."
+                        </span>
+                    </div>
+                    <div style={{fontSize: '12px', marginTop: '4px', color: 'rgba(255, 255, 255, 0.85)'}}>
+                        Experienced in full-stack development, REST APIs, cloud-integrated applications, and ML-powered features.
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+function Projects() {
+    const project_list = [
+        {
+            name: "VitalNex - A Student Needs Application",
+            date: "July 2023 - April 2024",
+            link: "https://github.com/ShaileshSurya",
+            description: [
+                "Developed a comprehensive platform to manage daily essentials for students and travelers, offering services like room rentals, mess options, and medical assistance.",
+                "Built with an intuitive XML-based UI, improving user experience and engagement.",
+                "Designed a robust backend with Firebase Authentication, ensuring optimized performance and scalability.",
+                "Successfully implemented features like real-time listings and Firebase Auth for secure, real-time operations."
+            ],
+            domains: ["Android", "XML", "Firebase", "Authentication"]
+        },
+        {
+            name: "MediPlus - AI Powered Telemedicine Platform",
+            date: "Jan 2024 - May 2024",
+            link: "https://github.com/ShaileshSurya",
+            description: [
+                "Developed an AI-driven telemedicine platform that predicts diseases, recommends doctors, and simplifies healthcare access through smart automation and real-time data management.",
+                "Implemented Machine Learning algorithms based on disease prediction and specialist recommendation.",
+                "Integrated Flask, Firebase Firestore, and Selenium for secure real-time operations and doctor verification with a responsive HTML, CSS, and JavaScript frontend.",
+                "Enabled automatic severity scoring and nearest doctor search, enhancing user experience and emergency accessibility."
+            ],
+            domains: ["Python", "Flask", "Machine Learning", "Firebase", "Selenium"]
+        },
+        {
+            name: "Sharman Foundation - Full Stack Intern",
+            date: "August 2025",
+            link: "https://sharmanfoundation.vercel.app",
+            description: [
+                "Developed an Orphan Management System to streamline data handling and enhance operational efficiency.",
+                "Built and maintained a secure, scalable backend using Node.js and MongoDB, and deployed the full web application on Vercel.",
+                "Integrated Firebase and Google Cloud for authentication and real-time operations, designing a React + Tailwind CSS frontend.",
+                "Worked on both frontend and backend development for delivering high-performance applications."
+            ],
+            domains: ["React", "Node.js", "MongoDB", "Firebase", "Tailwind CSS"]
+        }
+    ];
+
+    const tag_colors = {
+        "React": "blue-400",
+        "Python": "blue-500",
+        "Flask": "gray-600",
+        "Node.js": "green-500",
+        "MongoDB": "green-600",
+        "Firebase": "yellow-500",
+        "Android": "green-400",
+        "XML": "orange-500",
+        "Authentication": "red-500",
+        "Machine Learning": "purple-500",
+        "Selenium": "green-500",
+        "Tailwind CSS": "blue-300",
+        "JavaScript": "yellow-400",
+        "Java": "red-500",
+        "HTML": "orange-500",
+        "CSS": "blue-300"
+    }
+
+    return (
+        <>
+            <div className="flex items-center font-medium relative text-2xl mt-2 md:mt-4 mb-4">
+                Projects <img className="w-16 inline" src="./images/logos/pic-5.png" />
+                <div className="absolute pt-px bg-white mt-px top-full w-full">
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
+                </div>
+            </div>
+            {
+                project_list.map((project, index) => {
+                    return (
+                        <a key={index} href={project.link} target="_blank" rel="noreferrer" className="flex w-full flex-col px-4">
+                            <div className="w-full py-1 px-2 my-2 border border-gray-50 border-opacity-10 rounded hover:bg-gray-50 hover:bg-opacity-5 cursor-pointer">
+                                <div className="flex flex-wrap justify-between items-center">
+                                    <div className=" text-base md:text-lg">{project.name.toLowerCase()}</div>
+                                    <div className="text-gray-300 font-light text-sm">{project.date}</div>
+                                </div>
+                                <ul className=" tracking-normal leading-tight text-sm font-light ml-4 mt-1">
+                                    {
+                                        project.description.map((desc, index) => {
+                                            return <li key={index} className="list-disc mt-1 text-gray-100">{desc}</li>;
+                                        })
+                                    }
+                                </ul>
+                                <div className="flex flex-wrap items-start justify-start text-xs py-2">
+                                    {
+                                        (project.domains ?
+                                            project.domains.map((domain, index) => {
+                                                let tag_color = tag_colors[domain];
+                                                return <span key={index} style={{ borderWidth: "1pt" }} className={`px-1.5 py-0.5 w-max border-${tag_color} text-${tag_color} m-1 rounded-full`}>{domain}</span>
+                                            })
+
+                                            : null)
+                                    }
+                                </div>
+                            </div>
+                        </a>
+                    )
+                })
+            }
+        </>
+    )
+}
+
+function Experience() {
+    return (
+        <>
+            <div className="flex items-center font-medium relative text-2xl mt-2 md:mt-4 mb-4">
+                Professional Experience <img className="w-16 inline" src="./images/logos/pic-5.png" />
+                <div className="absolute pt-px bg-white mt-px top-full w-full">
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
+                </div>
+            </div>
+            <ul className=" w-10/12  mt-4 ml-4 px-0 md:px-1">
+                <li className="list-disc">
+                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
+                    Sumago Infotech PVT LTD | Python Developer
+                    </div>
+                    <div className=" text-sm text-gray-400 mt-0.5">June 2024 - July 2024</div>
+                    <div className="text-sm text-gray-300 mt-2">• Learned web development using Python and PHP</div>
+                    <div className="text-sm text-gray-300 mt-1">• Developed a healthcare chatbot during my training at Sumago Infotech Pvt. Ltd.</div>
+                    <div className="text-sm text-gray-300 mt-1">• Developed a healthcare chatbot that provides basic health-related responses</div>
+                </li>
+                <li className="list-disc mt-5">
+                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
+                    Sharman Foundation | Full Stack Intern
+                    </div>  
+                    <div className=" text-sm text-gray-400 mt-0.5">August 2025</div>
+                    <div className="text-sm text-gray-300 mt-2">• Developed an Orphan Management System to streamline data handling and enhance operational efficiency, working on both frontend and backend development</div>
+                    <div className="text-sm text-gray-300 mt-1">• Built and maintained a secure, scalable backend using Node.js and MongoDB, and deployed the full web application on Vercel for reliable performance</div>
+                    <div className="text-sm text-gray-300 mt-1">• Integrated Firebase and Google Cloud for authentication and real-time operations, while designing a React + Tailwind CSS frontend for intuitive user experience</div>
+                </li>
+            </ul>
+        </>
+    )
+}
+
+function Resume() {
+    return (
+        <iframe className="h-full w-full" src="./files/Shailesh_Suryawanshi.pdf" title="shailesh resume" frameBorder="0"></iframe>
+    )
+}

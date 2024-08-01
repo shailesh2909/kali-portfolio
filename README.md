@@ -1,63 +1,216 @@
-# Web simulation of Kali Linux
+# 🖥️ Shailesh Suryawanshi - Portfolio Website
 
-This is a personal portfolio website of theme Kali Linux, made using React.js & tailwind CSS.
-If you want to edit this. Clone this project and edit the files in `/src/components`.
+An interactive Kali Linux-themed portfolio website built with Next.js and Tailwind CSS. This unique portfolio simulates a complete Linux desktop environment in the browser, showcasing skills, projects, and experience in an engaging and memorable way.
 
-To run this on localhost
-type `npm start` and when u are done coding type `npm run build` to build your app.
+## ✨ Features
 
-_NOTE: if you have yarn just replace `npm start` and `npm run build` with `yarn start` and `yarn build`._
+### 🎨 Interactive Desktop Environment
+- **Full Desktop Simulation**: Complete Kali Linux-themed UI with working window manager
+- **Draggable Windows**: Interactive application windows with minimize, maximize, and close functionality
+- **Multiple Applications**: Pre-built apps including Terminal, VS Code, Text Editor, Calculator, and more
+- **Context Menus**: Right-click context menus on desktop and folders
+- **Booting Screen**: Realistic Linux boot sequence animation
+- **Lock Screen**: Functional lock/unlock screen with custom backgrounds
 
+### 📱 Built-in Applications
+- **Terminal**: Interactive command-line interface
+- **VS Code**: Code editor simulation
+- **Chrome & Firefox**: Browser apps
+- **Spotify**: Music player interface
+- **Text Editor**: Document editing application
+- **Calculator**: Functional calculator
+- **File Manager**: Browse files and folders
+- **Settings**: Customize desktop appearance
+- **GitHub**: Portfolio project showcase
+- **And many more**: Metasploit, Nmap, Wireshark, and other security tools simulation
 
-### To make the contact form work
+### 🎯 Portfolio Features
+- Skills and technology stack showcase
+- Project gallery with live demos
+- Education and experience timeline
+- Downloadable resume
+- Contact form with email integration
+- Responsive design for all devices
 
-- Create a account in [emailjs](https://www.emailjs.com/) create also new Outlook or Gmail account to be able
-  to send email.
-- Create a new service, select and log in to your newly created outlook or gmail account on EmailJS.
-- Go back to the dashboard and get the Service ID copy it.
-- Create a .env file in your root folder and put
+## 🚀 Tech Stack
 
+- **Framework**: [Next.js](https://nextjs.org/) (Latest)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Library**: React (Latest)
+- **Animations**: Typewriter Effect
+- **Drag & Drop**: react-draggable
+- **PDF Viewer**: @react-pdf-viewer
+- **Analytics**: React GA
+- **Email Service**: EmailJS
+- **Deployment**: GitHub Pages
+
+## 📦 Installation
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Clone the Repository
+```bash
+git clone https://github.com/Ali-Abo-Alshamlat/ali-abo-alshamlat.github.io.git
+cd shailesh-suryawanshi-portfolio
 ```
 
-NEXT_PUBLIC_USER_ID = 'YOUR_USER_ID'
-NEXT_PUBLIC_TEMPLATE_ID = 'template_884mtzv'
-NEXT_PUBLIC_SERVICE_ID = 'YOUR_SERVICE_ID'
-
+### Install Dependencies
+```bash
+npm install
+# or
+yarn install
 ```
 
-into it. Replace \*your user id and your service ID with your values in your EmailJS service.
+## ⚙️ Configuration
 
-## This project was made using Create React App! Here is the scripts that u can run.
+### Environment Variables
 
-### `npm start`
+Create a `.env.local` file in the root directory:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```env
+NEXT_PUBLIC_USER_ID=YOUR_EMAILJS_USER_ID
+NEXT_PUBLIC_TEMPLATE_ID=YOUR_EMAILJS_TEMPLATE_ID
+NEXT_PUBLIC_SERVICE_ID=YOUR_EMAILJS_SERVICE_ID
+NEXT_PUBLIC_TRACKING_ID=YOUR_GOOGLE_ANALYTICS_ID
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Setting up EmailJS for Contact Form
 
-### `npm run build`
+1. Create an account at [EmailJS](https://www.emailjs.com/)
+2. Set up a new email service (Gmail or Outlook recommended)
+3. Create an email template with the following variables:
+   - `from_name`
+   - `from_email`
+   - `message`
+4. Copy your User ID, Template ID, and Service ID to the `.env.local` file
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Setting up Google Analytics
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Create a Google Analytics account
+2. Get your Tracking ID
+3. Add it to the `.env.local` file as `NEXT_PUBLIC_TRACKING_ID`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🛠️ Development
 
-## Contributing
+### Run Development Server
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributiors who wants to make this website better can make contribution,which will be **greatly appreciated**.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+The page will auto-reload when you make changes. You'll also see any lint errors in the console.
+
+### Build for Production
+```bash
+npm run build
+# or
+yarn build
+```
+
+This builds the app for production, optimizing the build for best performance.
+
+### Start Production Server
+```bash
+npm start
+# or
+yarn start
+```
+
+### Export Static Site
+```bash
+npm run export
+# or
+yarn export
+```
+
+### Deploy to GitHub Pages
+```bash
+npm run deploy
+# or
+yarn deploy
+```
+
+## 📁 Project Structure
+
+```
+shailesh-suryawanshi-portfolio/
+├── components/
+│   ├── apps/              # Individual application components
+│   ├── base/              # Base components (window, app templates)
+│   ├── context menus/     # Right-click menu components
+│   ├── screen/            # Main screen components (desktop, navbar, etc.)
+│   ├── SEO/               # SEO and meta tags
+│   └── util components/   # Utility components (clock, status, etc.)
+├── pages/
+│   ├── _app.js           # Next.js app wrapper
+│   ├── _document.js      # Custom document
+│   └── index.js          # Home page
+├── public/
+│   ├── files/            # Public files
+│   ├── images/           # Images and wallpapers
+│   └── themes/           # UI themes and icons
+├── styles/
+│   └── index.css         # Global styles
+├── apps.config.js        # Application configuration
+├── tailwind.config.js    # Tailwind CSS configuration
+└── package.json          # Dependencies and scripts
+```
+
+## 🎨 Customization
+
+### Adding a New Application
+
+1. Create a new component in `/components/apps/`
+2. Add the app configuration in `apps.config.js`
+3. Import and register the app in the appropriate files
+
+### Changing Background Images
+
+- Add new wallpapers to `/public/images/wallpapers/`
+- Update the settings in the Settings app
+
+### Modifying Theme
+
+- Edit Tailwind configuration in `tailwind.config.js`
+- Update theme icons in `/public/themes/`
+
+## 🤝 Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Added some AmazingFeature'`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## 📝 License
 
-![Screenshot (371)](https://user-images.githubusercontent.com/60721049/193449920-1c2a99b4-072d-40d2-96d8-2add306a87df.png)
+Distributed under the MIT License. See `LICENSE` for more information.
 
-![Screenshot (372)](https://user-images.githubusercontent.com/60721049/193449933-853aa355-d440-4bd7-8b6a-d93a36076969.png)
+## 📧 Contact
+
+Shailesh Suryawanshi - [@your-twitter](https://twitter.com/your-twitter)
+
+Project Link: [https://ali-abo-alshamlat.github.io/](https://ali-abo-alshamlat.github.io/)
+
+## 🙏 Acknowledgments
+
+- Inspired by the Kali Linux desktop environment
+- Icons from Flat-Remix-Blue-Dark theme
+- Built with passion for creating unique web experiences
+
+## 📸 Screenshots
+
+![Desktop View](https://user-images.githubusercontent.com/60721049/193449920-1c2a99b4-072d-40d2-96d8-2add306a87df.png)
+
+![Applications View](https://user-images.githubusercontent.com/60721049/193449933-853aa355-d440-4bd7-8b6a-d93a36076969.png)
+
+---
+
+Made with ❤️ by Shailesh Suryawanshi

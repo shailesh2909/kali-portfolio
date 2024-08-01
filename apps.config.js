@@ -1,13 +1,11 @@
 import { displayTerminal } from './components/apps/terminal';
-import displaySpotify from './components/apps/spotify';
 import displayVsCode from './components/apps/vscode';
 import { displayRootTerminal } from './components/apps/root-terminal';
 import { displaySettings } from './components/apps/settings';
-import { displayFirefox } from './components/apps/firefox';
 import { displayChrome } from './components/apps/chrome';
 import { displayTrash } from './components/apps/trash';
 import { displayGedit } from './components/apps/gedit';
-import { displayAboutAli } from './components/apps/ali';
+import { displayAboutShailesh } from './components/apps/shailesh';
 import { displayTerminalCalc } from './components/apps/calc';
 import { displayMetasploit } from './components/apps/metasploit';
 import { displayNmap } from './components/apps/nmap';
@@ -19,12 +17,13 @@ import { displayNeofetch } from './components/apps/neofetch';
 import { displayTracer } from './components/apps/packet-tracer';
 import { displaySqlmap } from './components/apps/sqlmap';
 import { displayDisqusComments } from './components/apps/messaging-app';
-import { displayTextEditor } from './components/apps/editor';
+import { displayTextEditor } from './components/apps/text-editor';
 import { displayWeather } from './components/apps/weather';
 import { displayApache } from './components/apps/apache';
 import { displayShodan } from './components/apps/shodan';
 import { displayZoomEye } from './components/apps/zoom-eye';
 import { displayExploitDatabase } from './components/apps/exploit-database';
+import { displaySnakeGame } from './components/apps/snake-game';
 
 const apps = [
     {
@@ -37,22 +36,14 @@ const apps = [
         screen: displayTerminal,
     },
     {
-        id: "about-ali",
-        title: "About Ali",
+        id: "about-shailesh",
+        title: "About Shailesh",
         icon: './themes/Flat-Remix-Blue-Dark/system/user-home.svg',
         disabled: false,
         favourite: true,
         desktop_shortcut: true,
-        screen: displayAboutAli,
-    },
-    {
-        id: "firefox",
-        title: "Fire Fox",
-        icon: './themes/Flat-Remix-Blue-Dark/apps/firefox.svg',
-        disabled: false,
-        favourite: true,
-        desktop_shortcut: true,
-        screen: displayFirefox,
+        screen: displayAboutShailesh,
+        hideWindowChrome: true,
     },
     {
         id: "metasploit",
@@ -98,15 +89,6 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displayVsCode,
-    },
-    {
-        id: "spotify",
-        title: "Spotify",
-        icon: './themes/Flat-Remix-Blue-Dark/apps/spotify.png',
-        disabled: false,
-        favourite: true,
-        desktop_shortcut: false,
-        screen: displaySpotify,
     },
     {
         id: "settings",
@@ -227,11 +209,11 @@ const apps = [
     },
     {
         id: "editor",
-        title: "Text-Editor",
+        title: "Text Editor",
         icon: './themes/Flat-Remix-Blue-Dark/apps/text-editor.png',
         disabled: false,
-        favourite: false,
-        desktop_shortcut: false,
+        favourite: true,
+        desktop_shortcut: true,
         screen: displayTextEditor,
     },
     {
@@ -269,6 +251,15 @@ const apps = [
         favourite: false,
         desktop_shortcut: false,
         screen: displayExploitDatabase,
+    },
+    {
+        id: "snake-game",
+        title: "Terminal Snake",
+        icon: './themes/Flat-Remix-Blue-Dark/apps/snake-game.svg',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: true,
+        screen: displaySnakeGame,
     },
 ]
 

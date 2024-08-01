@@ -13,10 +13,10 @@ export class RootTerminal extends Component {
         this.commands_index = -1;
         this.child_directories = {
             root: ["projects", "skills", "languages", "interests"],
-            skills: ["Front-end development", "React.js", "jQuery", "Flutter", "Laravel", "SQL", "Firebase"],
-            projects: ["ali-personal-portfolio", "synonyms-list-react", "webserver in c language", "Learn Management System", "flutter-banking-app", "Meditech-Healthcare"],
-            interests: ["Software Engineering", "Sys Admin", "Computer Vision"],
-            languages: ["Javascript", "C++", "Java", "Dart"],
+            skills: ["Python", "React.js", "Node.js", "Flask", "MongoDB", "Firebase", "Machine Learning"],
+            projects: ["VitalNex", "MediPlus", "Sharman-Foundation", "Healthcare-Chatbot"],
+            interests: ["Software Engineering", "Healthcare Tech", "AI/ML", "Full-Stack Development"],
+            languages: ["Python", "Java", "C++", "C", "JavaScript", "TypeScript", "PHP", "HTML", "CSS"],
         };
         this.state = {
             terminal: [],
@@ -24,7 +24,9 @@ export class RootTerminal extends Component {
     }
 
     componentDidMount() {
-        this.reStartRootTerminal();
+        setTimeout(() => {
+            this.reStartRootTerminal();
+        }, 0);
     }
 
     componentDidUpdate() {
@@ -38,7 +40,7 @@ export class RootTerminal extends Component {
 
     reStartRootTerminal = () => {
         clearInterval(this.cursor);
-        $('#terminal-body').empty();
+        $('#root-terminal-body').empty();
         this.appendRootTerminalRow();
     }
 
@@ -54,8 +56,8 @@ export class RootTerminal extends Component {
             <React.Fragment key={id}>
                 <div className="flex w-full h-5">
                     <div className=" text-ubt-red">┌──(root㉿kali)-[{this.current_directory}] </div>                                                        
-                    </div>
-                    <div className="flex">
+                </div>
+                <div className="flex">
                     <div className=" text-ubt-red">└─# </div>
                     <div id="cmd" onClick={this.focusCursor} className=" bg-transperent relative flex-1 overflow-hidden">
                         <span id={`show-${id}`} className=" float-left whitespace-pre pb-1 opacity-100 font-normal tracking-wider"></span>
@@ -236,7 +238,7 @@ export class RootTerminal extends Component {
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("vscode");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands:[ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands:[ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg]";
                 }
                 break;
             case "echo":
@@ -246,63 +248,64 @@ export class RootTerminal extends Component {
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("spotify");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg ]";
                 }
                 break;
             case "chrome":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("chrome");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg ]";
                 }
                 break;
                 case "firefox":
                     if (words[0] === "." || words.length === 0) {
                         this.props.openApp("firefox");
                     } else {
-                        result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg ]";
+                        result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg ]";
                     }
                     break;
             case "trash":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("trash");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg ]";
                 }
                 break;
-            case "about-ali":
+            case "about-shailesh":
+            case "about-shailesh":
                 if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("about-ali");
+                    this.props.openApp("about-shailesh");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg ]";
                 }
                 break;
             case "terminal":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("terminal");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg ]";
                 }
                 break;
             case "settings":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("settings");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg ]";
                 }
                 break;
             case "sendmsg":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("gedit");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg ]";
                 }
                 break;
             case "sudo":
                 if (words[0] === "." || words.length === 0) {
                     result="you'r Root! 🙃"
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg ]";
                 }
                 break;
             case "clear":
@@ -312,7 +315,7 @@ export class RootTerminal extends Component {
                 this.closeRootTerminal();
                 return;
             default:
-                result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-ali, trash, settings, sendmsg ]";
+                result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, firefox, about-shailesh, trash, settings, sendmsg ]";
         }
         document.getElementById(`row-result-${rowId}`).innerHTML = result;
         this.appendRootTerminalRow();
@@ -342,7 +345,7 @@ export class RootTerminal extends Component {
 
     render() {
         return (
-            <div className="h-full w-full bg-ub-grey-500 text-white text-sm font-bold" id="terminal-body">
+            <div className="h-full w-full bg-ub-grey-500 text-white text-sm font-bold" id="root-terminal-body">
                 {
                     this.state.terminal
                 }

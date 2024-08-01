@@ -45,13 +45,13 @@ export class Neofetch extends Component {
         return (
             <React.Fragment key={id}>
                 <div className="flex w-full h-5">
-                    <div className=" text-ubt-blue">┌──(ali㉿kali)-[{this.current_directory}] </div>                                                        
+                    <div className=" text-ubt-blue">┌──(shailesh㉿kali)-[{this.current_directory}] </div>                                                        
                      </div>
                     <div className="flex">
                     <div className=" text-ubt-blue">└─$ </div> 
                     <div className="p-1"> <pre>                                              
-        ' ..............                       ali@kali     <br/>
-        '       ..,;:ccc,.                     --------     <br/>
+        ' ..............                       shailesh@kali     <br/>
+        '       ..,;:ccc,.                     -------------     <br/>
         '         ......''';lxO.                            <br/>
         '  .....''''..........,:ld;                         <br/>
         '             .';;;:::;,,.x,                        <br/>

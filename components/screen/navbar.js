@@ -14,15 +14,25 @@ export default class Navbar extends Component {
 	render() {
 		return (
 			<div className="main-navbar-vp absolute top-0 right-0 w-screen shadow-md flex flex-nowrap justify-between items-center bg-black bg-opacity-70 text-ubt-grey text-sm select-none z-50">
-				<div
-					tabIndex="0"
-					className={
-						'pl-3 pr-3 outline-none transition duration-100 ease-in-out border-b-2 border-transparent focus:border-ubb-blue py-1 '
-					}
-				>
-					Applications
-				 
-   				</div>
+				<div className="flex items-center">
+					<div
+						tabIndex="0"
+						className={
+							'pl-3 pr-3 outline-none transition duration-100 ease-in-out border-b-2 border-transparent focus:border-ubb-blue py-1 '
+						}
+					>
+						Applications
+					</div>
+					<div
+						tabIndex="0"
+						onClick={this.props.lockScreen}
+						className={
+							'pl-3 pr-3 outline-none transition duration-100 ease-in-out border-b-2 border-transparent focus:border-ubb-blue hover:bg-white hover:bg-opacity-10 cursor-pointer py-1 '
+						}
+					>
+						Portfolio
+					</div>
+				</div>
 				   
 				<div
 					tabIndex="0"

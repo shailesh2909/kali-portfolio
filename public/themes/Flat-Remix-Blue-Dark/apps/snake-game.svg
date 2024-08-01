@@ -1,0 +1,62 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="128" height="128" fill="#0a0e14" rx="8"/>
+  
+  <!-- Grid lines -->
+  <defs>
+    <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#1a1f26" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="128" height="128" fill="url(#grid)"/>
+  
+  <!-- Snake body -->
+  <g filter="url(#glow)">
+    <!-- Tail -->
+    <rect x="20" y="52" width="12" height="12" fill="#00aa77" rx="2"/>
+    <rect x="32" y="52" width="12" height="12" fill="#00bb88" rx="2"/>
+    <rect x="44" y="52" width="12" height="12" fill="#00cc99" rx="2"/>
+    
+    <!-- Middle -->
+    <rect x="56" y="52" width="12" height="12" fill="#00ddaa" rx="2"/>
+    <rect x="68" y="52" width="12" height="12" fill="#00eebb" rx="2"/>
+    <rect x="80" y="52" width="12" height="12" fill="#00ffcc" rx="2"/>
+    
+    <!-- Neck going up -->
+    <rect x="92" y="52" width="12" height="12" fill="#00ffdd" rx="2"/>
+    <rect x="92" y="40" width="12" height="12" fill="#00ffee" rx="2"/>
+    
+    <!-- Head -->
+    <rect x="92" y="28" width="12" height="12" fill="#00ffff" rx="2"/>
+    
+    <!-- Eyes -->
+    <circle cx="95" cy="31" r="1.5" fill="#0a0e14"/>
+    <circle cx="101" cy="31" r="1.5" fill="#0a0e14"/>
+  </g>
+  
+  <!-- Food (glowing dot) -->
+  <g filter="url(#glow-food)">
+    <circle cx="58" cy="28" r="4" fill="#ff0064"/>
+  </g>
+  
+  <!-- Border glow -->
+  <rect x="2" y="2" width="124" height="124" fill="none" stroke="#00ffaa" stroke-width="2" rx="8" opacity="0.5"/>
+  
+  <!-- Filters -->
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-food">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>

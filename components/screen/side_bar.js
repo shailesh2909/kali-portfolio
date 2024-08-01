@@ -45,6 +45,11 @@ export function AllApps(props) {
 
     const [title, setTitle] = useState(false);
 
+    const handleContextMenu = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+    };
+
     return (
         <div
             className={`w-10 h-10 rounded m-1 hover:bg-white hover:bg-opacity-10 flex items-center justify-center`}
@@ -55,6 +60,7 @@ export function AllApps(props) {
                 setTitle(false);
             }}
             onClick={props.showApps}
+            onContextMenu={handleContextMenu}
         >
             <div className="relative">
                 <img width="28px" height="28px" className="w-9" src="./themes/Flat-Remix-Blue-Dark/system/view-app-grid-symbolic.svg" alt="Kali view app" />

@@ -173,18 +173,26 @@ export class Window extends Component {
                 bounds={{ left: 0, top: 0, right: this.state.parentSize.width, bottom: this.state.parentSize.height }}
             >
                 <div style={{ width: `${this.state.width}%`, height: `${this.state.height}%` }}
-                    className={this.state.cursorType + " " + (this.state.closed ? " closed-window " : "") + (this.state.maximized ? " duration-300 rounded-none" : " rounded-lg rounded-b-none") + (this.props.minimized ? " opacity-0 invisible duration-200 " : "") + (this.props.isFocused ? " z-30 " : " z-20 notFocused") + " opened-window overflow-hidden min-w-1/4 min-h-1/4 main-window absolute window-shadow border-black border-opacity-40 border border-t-0 flex flex-col"}
+                    className={this.state.cursorType + " " + (this.state.closed ? " closed-window " : "") + (this.state.maximized ? " duration-300 rounded-none" : (this.props.hideWindowChrome ? " rounded-lg" : " rounded-lg rounded-b-none")) + (this.props.minimized ? " opacity-0 invisible duration-200 " : "") + (this.props.isFocused ? " z-30 " : " z-20 notFocused") + " opened-window overflow-hidden min-w-1/4 min-h-1/4 main-window absolute " + (this.props.hideWindowChrome ? "" : "window-shadow border-black border-opacity-40 border border-t-0") + " flex flex-col" + (this.props.hideWindowChrome ? " bg-transparent" : "")}
                     id={this.id}
                 >
-                    <WindowYBorder resize={this.handleHorizontalResize} />
-                    <WindowXBorder resize={this.handleVerticleResize} />
-                    <WindowTopBar title={this.props.title} />
-                    <WindowEditButtons minimize={this.minimizeWindow} maximize={this.maximizeWindow} isMaximised={this.state.maximized} close={this.closeWindow} id={this.id} />
+                    {!this.props.hideWindowChrome && <WindowYBorder resize={this.handleHorizontalResize} />}
+                    {!this.props.hideWindowChrome && <WindowXBorder resize={this.handleVerticleResize} />}
+                    {!this.props.hideWindowChrome && <WindowTopBar title={this.props.title} />}
+                    {!this.props.hideWindowChrome && <WindowEditButtons minimize={this.minimizeWindow} maximize={this.maximizeWindow} isMaximised={this.state.maximized} close={this.closeWindow} id={this.id} />}
                     {(this.id === "settings"
                         ? <Settings changeBackgroundImage={this.props.changeBackgroundImage} currBgImgName={this.props.bg_image_name} />
-                        : <WindowMainScreen screen={this.props.screen} title={this.props.title}
-                            addFolder={this.props.id === "terminal" ? this.props.addFolder : null}
-                            openApp={this.props.openApp} />)}
+                        : <WindowMainScreen 
+                            screen={this.props.screen} 
+                            title={this.props.title}
+                            addFolder={this.props.id === "terminal" || this.props.id === "root-terminal" ? this.props.addFolder : null}
+                            openApp={this.props.openApp}
+                            minimizeApp={this.minimizeWindow}
+                            maximizeApp={this.maximizeWindow}
+                            closeApp={this.closeWindow}
+                            id={this.id}
+                            hideBackground={this.props.hideWindowChrome}
+                        />)}
                 </div>
             </Draggable >
         )
@@ -278,18 +286,16 @@ export class WindowMainScreen extends Component {
     constructor() {
         super();
         this.state = {
-            setDarkBg: false,
+            setDarkBg: true,
         }
     }
     componentDidMount() {
-        setTimeout(() => {
-            this.setState({ setDarkBg: true });
-        }, 3000);
+        // Removed delay - background shows immediately
     }
     render() {
         return (
-            <div className={"w-full flex-grow z-20 max-h-full overflow-y-auto windowMainScreen" + (this.state.setDarkBg = " bg-ub-drk-abrgn " )}>
-                {this.props.addFolder ? displayTerminal(this.props.addFolder, this.props.openApp) : this.props.screen()}
+            <div className={"w-full flex-grow z-20 max-h-full overflow-y-auto windowMainScreen" + (this.state.setDarkBg && !this.props.hideBackground ? " bg-ub-drk-abrgn " : " ")}>
+                {this.props.screen(this.props.addFolder, this.props.openApp, this.props.id, this.props.minimizeApp, this.props.maximizeApp, this.props.closeApp)}
             </div>
         )
     }

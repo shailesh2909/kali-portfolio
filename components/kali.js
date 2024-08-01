@@ -56,6 +56,7 @@ export default class Kali extends Component {
 	};
 
 	lockScreen = () => {
+		console.log('lockScreen called');
 		// google analytics
 		ReactGA.pageview('/lock-screen');
 		ReactGA.event({
@@ -63,9 +64,14 @@ export default class Kali extends Component {
 			action: `Set Screen to Locked`
 		});
 
-		document.getElementById('status-bar').blur();
+		const statusBar = document.getElementById('status-bar');
+		if (statusBar) statusBar.blur();
+		
 		setTimeout(() => {
-			this.setState({ screen_locked: true });
+			console.log('Setting screen_locked to true');
+			this.setState({ screen_locked: true }, () => {
+				console.log('State updated, screen_locked:', this.state.screen_locked);
+			});
 		}, 100); // waiting for all windows to close (transition-duration)
 		localStorage.setItem('screen-locked', true);
 	};

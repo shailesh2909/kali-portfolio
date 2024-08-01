@@ -4,14 +4,14 @@ import Head from 'next/head';
 export default function Meta() {
     return (
         <Head>
-            <title>Ali Abo Alshamlat Portfolio</title>
+            <title>Shailesh Suryawanshi Portfolio</title>
             <meta charSet="utf-8" />
-            <meta name="title" content="Ali Abo Alshamlat Portfolio" />
+            <meta name="title" content="Shailesh Suryawanshi Portfolio" />
             <meta name="description"
-                content="Ali Abo Alshamlat Portfolio Personal Portfolio Website. Made with Kali Linux." />
-            <meta name="author" content="Ali Abo Alshamlat" />
+                content="Shailesh Suryawanshi Personal Portfolio Website. Python Developer & Full Stack Developer specializing in React, Node.js, Flask, and Machine Learning. Made with Kali Linux theme." />
+            <meta name="author" content="Shailesh Suryawanshi" />
             <meta name="keywords"
-                content="Ali Abo Alshamlat, Ali Abo Alshamlat's portfolio, Ali Abo Alshamlat linux, kali portfolio, ali kali, Ali Abo Alshamlat kali linux portfolio" />
+                content="Shailesh Suryawanshi, Shailesh portfolio, python developer, full stack developer, react developer, node.js developer, machine learning, web developer portfolio, PICT Pune" />
             <meta name="robots" content="index, follow" />
             <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
             <meta name="language" content="English" />
@@ -21,17 +21,17 @@ export default function Meta() {
             /* Search Engine */
             <meta name="image" content="images/logos/pic-1.png" />
             /* Schema.org for Google */
-            <meta itemProp="name" content="Ali Abo Alshamlat Portfolio" />
+            <meta itemProp="name" content="Shailesh Suryawanshi Portfolio" />
             <meta itemProp="description"
-                content="Ali Abo Alshamlat Personal Portfolio Website. Made with Kali (Linux) theme by Next.js and Tailwind CSS." />
+                content="Shailesh Suryawanshi Personal Portfolio Website. Python Developer & Full Stack Developer with expertise in React, Node.js, Flask, MongoDB, Firebase, and Machine Learning technologies." />
             <meta itemProp="image" content="images/logos/pic-1.png" />
             /* Open Graph general (Facebook, Pinterest & Google+) */
-            <meta name="og:title" content="Ali Abo Alshamlat Portfolio" />
+            <meta name="og:title" content="Shailesh Suryawanshi Portfolio" />
             <meta name="og:description"
-                content="Ali Abo Alshamlat Personal Portfolio Website. Made with Kali (Linux) theme by Next.js and Tailwind CSS." />
+                content="Shailesh Suryawanshi Personal Portfolio Website. Python Developer & Full Stack Developer specializing in React, Node.js, Flask, and Machine Learning development." />
             <meta name="og:image" content="images/logos/logo_1.png" />
             <meta name="og:url" content="http://ali-abo-alshamlat.github.io/" />
-            <meta name="og:site_name" content="Ali Abo Alshamlat Personal Portfolio" />
+            <meta name="og:site_name" content="Shailesh Suryawanshi Personal Portfolio" />
             <meta name="og:locale" content="en_IN" />
             <meta name="og:type" content="website" />
 
