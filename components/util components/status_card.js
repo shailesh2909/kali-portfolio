@@ -1,3 +1,4 @@
+// File refreshed
 import React, { Component } from 'react';
 import SmallArrow from './small_arrow';
 import onClickOutside from 'react-onclickoutside';

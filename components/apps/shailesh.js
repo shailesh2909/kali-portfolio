@@ -1,3 +1,4 @@
+// File refreshed
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
 

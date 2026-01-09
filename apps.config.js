@@ -1,3 +1,4 @@
+// File refreshed
 import { displayTerminal } from './components/apps/terminal';
 import displayVsCode from './components/apps/vscode';
 import { displayRootTerminal } from './components/apps/root-terminal';

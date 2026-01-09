@@ -1,3 +1,4 @@
+// File refreshed
 import React, { Component } from 'react';
 import BootingScreen from './screen/booting_screen';
 import Desktop from './screen/desktop';

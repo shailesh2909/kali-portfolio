@@ -1,3 +1,4 @@
+// File refreshed
 import React, { Component } from "react";
 
 export class SideBarApp extends Component {

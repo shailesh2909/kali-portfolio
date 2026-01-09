@@ -1,3 +1,4 @@
+// File refreshed
 import React, { Component } from "react";
 
 import { EditorState, convertToRaw } from "draft-js";

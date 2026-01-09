@@ -1,3 +1,4 @@
+// File refreshed
 import React from 'react';
 import KaliApp from '../base/kali_app';
 

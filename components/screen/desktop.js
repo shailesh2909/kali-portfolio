@@ -1,3 +1,4 @@
+// File refreshed
 import React, { Component } from 'react';
 import BackgroundImage from '../util components/background-image';
 import SideBar from './side_bar';

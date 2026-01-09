@@ -1,3 +1,4 @@
+// File refreshed
 import React from 'react'
 
 export default function SmallArrow(props) {
